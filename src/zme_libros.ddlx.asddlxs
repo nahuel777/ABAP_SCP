@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+                    typeName: 'Libro',
+                    typeNamePlural: 'Libros',
+                    typeImageUrl: '',
+                    imageUrl: 'Url',
+                    title: {
+                            type: #STANDARD,
+                            label: '',
+                            iconUrl: '',
+                            criticality: '',
+                            criticalityRepresentation: #WITHOUT_ICON,
+                            value: 'Titulo',
+                            valueQualifier: '',
+                            targetElement: '',
+                            url: ''
+                            },
+                    description: {
+                                    type: #STANDARD,
+                                    label: '',
+                                    iconUrl: '',
+                                    criticality: '',
+                                    criticalityRepresentation: #WITHOUT_ICON,
+                                    value: 'Autor',
+                                    valueQualifier: '',
+                                    targetElement: '',
+                                    url: ''
+                                 }
+                  }
+@Search.searchable: true
+
+annotate view Z_B_LIBROS with
+{
+  @UI.facet: [{ id: 'DetallesLibro', label: 'Detalles del libro', type: #COLLECTION, position: 10 },
+              { id: 'Libro', parentId: 'DetallesLibro', label: 'Detalles', type: #FIELDGROUP_REFERENCE,
+                targetQualifier: 'DetallesLibro', position: 10 },
+              { id: 'Clientes', label: 'Clientes', type: #LINEITEM_REFERENCE, targetElement: 'Clientes', position: 20 }]
+
+  @UI: { fieldGroup: [{ qualifier: 'DetallesLibro', position: 10 }],
+         lineItem : [{ position: 60, importance: #HIGH }]  }
+  @Search: { defaultSearchElement: true,
+             ranking: #MEDIUM,
+             fuzzinessThreshold: 0.8 }
+  Editorial;
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 20 }]
+  Idioma;
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 30 }]
+  Paginas;
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 40 }]
+  Autor;
+  @UI.fieldGroup: [{ qualifier: 'DetallesLibro', position: 40 }]
+  Formato;
+
+  @UI: { lineItem: [{ position: 10, importance: #HIGH }],
+         selectionField: [{ position: 10 }] }
+  Titulo;
+  @UI.lineItem: [{ position: 20, importance: #LOW, label: 'Codigo de libro' }]
+  Identificador;
+  @UI.lineItem: [{ position: 30, importance: #MEDIUM }]
+  @UI.selectionField: [{ position: 20 }]
+  @Consumption.valueHelpDefinition: [{entity:{ name: 'Z_B_CATEGORIA', element: 'bi_categ'} }]
+  Categoria;
+  @UI.lineItem: [{ position: 40, importance: #HIGH}]
+  Precio;
+  @UI.lineItem: [{ position: 50, importance: #HIGH}]
+  Moneda;
+  @UI.lineItem: [{ position: 60, importance: #HIGH, label: 'Exito',  criticality: 'Exito'}]
+  UIExito;
+  @UI.lineItem: [{ position: 70, importance: #HIGH}]
+  Clientes;
+}

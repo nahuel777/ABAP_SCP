@@ -1,0 +1,41 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+                    typeName: 'Cliente',
+                    typeNamePlural: 'Clientes',
+                    typeImageUrl: '',
+                    imageUrl: 'url',
+                    title: {
+                            type: #STANDARD,
+                            label: '',
+                            iconUrl: '',
+                            criticality: '',
+                            criticalityRepresentation: #WITHOUT_ICON,
+                            value: 'Nombre',
+                            valueQualifier: '',
+                            targetElement: '',
+                            url: ''
+                            },
+                    description: {
+                                    type: #STANDARD,
+                                    label: '',
+                                    iconUrl: '',
+                                    criticality: '',
+                                    criticalityRepresentation: #WITHOUT_ICON,
+                                    value: 'id_cliente',
+                                    valueQualifier: '',
+                                    targetElement: '',
+                                    url: ''
+                                 }
+                  }
+
+annotate view Z_B_CLIENTES with
+{
+  @UI.lineItem: [{ position: 10, importance: #LOW, label: 'ID Ciente' }]
+  id_cliente;
+  @UI.lineItem: [{ position: 20, importance: #LOW, label: 'Acceso del cliente' }]
+  tipo_acceso;
+  @UI.lineItem: [{ position: 30, importance: #HIGH, label: 'Nombre' }]
+  Nombre;
+  @UI.lineItem: [{ position: 40, importance: #LOW, label: 'E-mail' }]
+  email;
+}
